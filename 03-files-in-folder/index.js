@@ -8,19 +8,24 @@
     Информация должна выводиться только для файлов. Наличие информации о директориях считается ошибкой.
 */
 
+// Подгружаем модули
 const fs = require('fs');
 const path = require('path');
+
+// Путь к директории secret-folder
 const secret = path.join(path.dirname(__filename), 'secret-folder');
+
+// Представление файлов в виде обьекта
 const option = { withFileTypes: true };
 
-
+// Чтение директории
 fs.readdir(secret, option, (error, files) => {
   error ? console.error(error.message) :
     files.forEach( file => {
       if(file.isFile()){
-        const ext = path.extname(file.name);
-        const base = path.basename(file.name, ext);
-        const way = path.join(secret, file.name);
+        const ext = path.extname(file.name); 
+        const base = path.basename(file.name, ext); 
+        const way = path.join(secret, file.name);  
 
         fs.stat(way, (error, stats) => {
           error ? console.error(error.message) :
