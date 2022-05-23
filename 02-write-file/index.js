@@ -22,10 +22,11 @@ stdin.on('data', data => {
   if (data.toString() === 'exit\n') exit();
   
   //Запись
-  output.write(data, error => console.error(error.message));
+  output.write(data, error => error ? console.error(error.message) : null);
 });
 
 
 // Выход
+process.on('SIGINT', () => exit());
 process.on('exit', () => console.log('\nВаш мемуар успешно окончен!'));
-process.on('SIGHUP', () => exit());
+
