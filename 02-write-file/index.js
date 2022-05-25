@@ -19,7 +19,7 @@ stdout.write('Пожалуйста введите текст: \n');
 
 // Ввод текста
 stdin.on('data', data => {
-  if (data.toString() === 'exit\n') exit();
+  if (data.toString().trim() === 'exit') exit();
   
   //Запись
   output.write(data, error => error ? console.error(error.message) : null);
