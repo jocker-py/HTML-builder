@@ -29,7 +29,7 @@ fs.readdir(secret, option, (error, files) => {
 
         fs.stat(way, (error, stats) => {
           error ? console.error(error.message) :
-            console.log(`${base} - ${ext.slice(1)} - ${stats.size/1000}kb`);
+            console.log(`${base} - ${ext.slice(1)} - ${stats.size/1024}kb`);
         });
       }
     });
